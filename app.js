@@ -11,14 +11,25 @@ var sideOfDice = 0;
 // Buttons
 window.document.querySelector(".btn-roll").addEventListener("click", RollDice);
 document.querySelector(".btn-new").addEventListener("click", newGame);
-// document.querySelector(".btn-hold").addEventListener("click",function (){
-//   if (currentPlayer == 0) {
-//     sumOfScores =
-//     window.document.getElementById("score-0").textContent = ;
-//   } else {
-//     window.document.getElementById("current-1").textContent = currentScore;
-//   }
-// })
+document.querySelector(".btn-hold").addEventListener("click", function () {
+  if (currentPlayer == 0) {
+    sumOfScores[0] = sumOfScores[0] + currentScore;
+    window.document.getElementById("score-0").textContent = sumOfScores[0];
+    currentPlayer = 1;
+    window.document.getElementById("current-0").textContent = "0";
+    document.querySelector(".player-0-panel").classList.remove("active");
+    document.querySelector(".player-1-panel").classList.add("active");
+    currentScore = 0;
+  } else {
+    sumOfScores[1] = sumOfScores[1] + currentScore;
+    window.document.getElementById("score-1").textContent = sumOfScores[1];
+    currentPlayer = 0;
+    window.document.getElementById("current-1").textContent = "0";
+    document.querySelector(".player-1-panel").classList.remove("active");
+    document.querySelector(".player-0-panel").classList.add("active");
+    currentScore = 0;
+  }
+});
 var dicePng = document.querySelector(".dice");
 dicePng.style.display = "none";
 function RollDice() {
