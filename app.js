@@ -6,6 +6,11 @@ var sumOfScores = [0, 0];
 var currentScore = 0;
 // Random side of Dice between 1 and 6
 var sideOfDice = 0;
-sideOfDice = Math.floor(Math.random() * 6 + 1);
 // #- ni id gaar ni handaj bui
-window.document.querySelector("#score-0").textContent = sideOfDice;
+window.document.querySelector(".btn-roll").addEventListener("click", RollDice);
+function RollDice() {
+  sideOfDice = Math.floor(Math.random() * 6 + 1);
+  window.document.querySelector("#score-0").textContent = sideOfDice;
+  window.document.getElementById("score-1").textContent = sideOfDice; // iluu hurdan ajildag
+  document.querySelector(".dice").src = "dice-" + sideOfDice + ".png";
+}
