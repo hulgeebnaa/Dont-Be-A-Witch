@@ -14,16 +14,12 @@
 }
 
 body {
-  background-image: linear-gradient(
-      rgba(62, 20, 20, 0.4),
-      rgba(62, 20, 20, 0.4)
-    ),
-    url(back.jpg);
+  background-color: burlywood;
   background-size: cover;
   background-position: center;
   font-family: Lato;
   font-weight: 300;
-  position: relative;
+  position: static;
   height: 100vh;
   color: #555;
 }
@@ -107,8 +103,8 @@ body {
 }
 
 button {
-  position: absolute;
-  width: 200px;
+  position: fixed;
+  width: 350px;
   left: 50%;
   transform: translateX(-50%);
   color: #555;
@@ -152,6 +148,9 @@ i {
 }
 .btn-hold {
   top: 467px;
+}
+.btn-help {
+  top: 550px;
 }
 
 .dice {

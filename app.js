@@ -51,9 +51,8 @@ window.document
       dicePng.src = "dice-" + sideOfDice + ".png";
     } else {
       // herev isGameOver = true buyu toglolt duussan bval
-      zuger = 1 + currentPlayer;
       setTimeout(function () {
-        alert(zuger + "-р тоглогч ялж тоглоом дууссан тул шинээр эхлүүлнэ үү");
+        won();
       }, 200);
     }
   });
@@ -61,6 +60,7 @@ window.document
 // New Game button darah
 document.querySelector(".btn-new").addEventListener("click", newGame);
 function newGame() {
+  gameName();
   dicePng.style.display = "none";
   document.querySelector(".dice").src = window.document.getElementById(
     "score-0"
@@ -82,7 +82,7 @@ document.querySelector(".btn-hold").addEventListener("click", function () {
       window.document.getElementById("score-0").textContent = sumOfScores[0]; // oorchloltiig haruulna
       window.document.getElementById("current-0").textContent = "0"; // current-iig 0 lene
       // hojih onoond hureegui bval
-      if (sumOfScores[0] < 200) {
+      if (sumOfScores[0] < 120) {
         currentPlayer = 1;
         //toglogchiin eeljiig solino
         document.querySelector(".player-0-panel").classList.remove("active");
@@ -92,15 +92,15 @@ document.querySelector(".btn-hold").addEventListener("click", function () {
         // hojih onoond hursen bval
         isGameOver = true; // togloltiig duusgaad
         setTimeout(function () {
-          alert(" 1-р тоглогч яллаа ");
-        }, 200);
+          win();
+        }, 150);
       }
     } else {
       // 1-r toglogch bval
       sumOfScores[1] = sumOfScores[1] + currentScore;
       window.document.getElementById("score-1").textContent = sumOfScores[1];
       window.document.getElementById("current-1").textContent = "0";
-      if (sumOfScores[1] < 200) {
+      if (sumOfScores[1] < 120) {
         currentPlayer = 0;
         document.querySelector(".player-1-panel").classList.remove("active");
         document.querySelector(".player-0-panel").classList.add("active");
@@ -108,15 +108,60 @@ document.querySelector(".btn-hold").addEventListener("click", function () {
       } else {
         isGameOver = true;
         setTimeout(function () {
-          alert(" 2-р тоглогч яллаа ");
-        }, 200);
+          win();
+        }, 150);
       }
     }
   } else {
-    zuger = currentPlayer + 1;
     setTimeout(function () {
-      alert(zuger + "-р тоглогч ялж тоглоом дууссан тул шинээр эхлүүлнэ үү");
-    }, 200);
+      won();
+    }, 150);
   }
 });
 dicePng.style.display = "none";
+//Togloomiin durem button
+document.querySelector(".btn-help").addEventListener("click", function () {
+  setTimeout(function () {
+    Swal.fire("Тоглоомын дүрэм", durem, "success");
+  }, 100);
+});
+var durem =
+  "Дүрэм №1. Нийт оноогоо түрүүлж 120 оноонд хүргэсэн тоглогч хожно. -------------------------------------------------------- " +
+  "Дүрэм №2. Таны ээлж эхлэх үед 'ШИДЭХ' товчыг дарж шоогоо шидэн буусан нүдний тоогоор ээлжийн оноогоо цуглуулна ----------------------------------------------------------------" +
+  "Дүрэм №3. Цуглуулсан ээлжийн оноогоо 'ОНООГОО АВАХ' товчин дээр дарж нийт оноо дээр нэмэн нөгөө хүнд шидэх эрх өгнө. " +
+  "-----------------------------------------------------------------------Дүрэм №4. Хэрэв шооны нүд 1 буусан тохиолдолд ээлжийн оноо устгагдаж нөгөө хүнд шидэх эрх өгнө.------------------------ " +
+  "Дүрэм №5. Хожсон тоглогч дараагийн тоглолтыг эхлүүлнэ.-----";
+function win() {
+  var xd = 1 + currentPlayer;
+  Swal.fire({
+    title: "----------" + xd + "- р тоглогч яллаа!!!----------",
+    text: "",
+    imageUrl: "win.gif",
+    imageWidth: 400,
+    imageHeight: 200,
+    imageAlt: "Custom image",
+  });
+}
+function won() {
+  var xd1 = 1 + currentPlayer;
+  Swal.fire({
+    icon: "error",
+    title:
+      "----" +
+      xd1 +
+      "-р тоглогч ялж тоглоом дууссан тул шинээр эхлүүлнэ үү--------",
+    text: "",
+    footer: "",
+  });
+}
+function gameName() {
+  Swal.fire({
+    title:
+      "----Шунал ихтвэл Шулам болно------------Developed by Batkhuleg---------",
+    text: "",
+    imageUrl: "witch.jpg",
+    imageWidth: 250,
+    imageHeight: 250,
+    imageAlt: "Custom image",
+  });
+}
